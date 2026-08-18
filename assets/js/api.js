@@ -27,7 +27,7 @@
 
   function request(action, payload = {}, options = {}) {
     return new Promise((resolve, reject) => {
-      const isPublic = action === 'health' || action === 'login';
+      const isPublic = ['health', 'login', 'register'].includes(action);
       const sessionToken = localStorage.getItem(config.SESSION_STORAGE_KEY) || '';
 
       if (!isPublic && !sessionToken) {
@@ -119,6 +119,10 @@
       });
   }
 
+  function registerAccount(payload) {
+    return request('register', payload || {});
+  }
+
   function logout() {
     clearSession();
     window.location.reload();
@@ -188,6 +192,7 @@
   window.FTSPApi = Object.freeze({
     request,
     login,
+    registerAccount,
     logout,
     clearSession,
     getCurrentUser,
@@ -209,7 +214,7 @@
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker
-        .register('./service-worker.js?v=4')
+        .register('./service-worker.js?v=5')
         .catch(error => console.warn('Service worker gagal didaftarkan:', error));
     });
   }

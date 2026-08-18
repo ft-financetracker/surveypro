@@ -7,7 +7,7 @@
   place-items: center;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 24px;
+  padding: 0;
   background:
     radial-gradient(circle at 12% 8%, rgba(30, 58, 138, .32), transparent 34%),
     radial-gradient(circle at 90% 94%, rgba(182, 255, 0, .08), transparent 28%),
@@ -16,21 +16,24 @@
 }
 
 .ftsp-auth__shell {
-  width: min(1040px, 100%);
-  padding: 12px;
-  border: 1px solid rgba(148, 163, 184, .18);
-  border-radius: 36px;
-  background: #1a1f2b;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, .48);
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .ftsp-auth__panel {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(280px, .82fr) minmax(420px, 1.18fr);
-  min-height: min(720px, calc(100dvh - 72px));
-  border-radius: 27px;
+  grid-template-columns: minmax(300px, .92fr) minmax(420px, 1.08fr);
+  min-height: 100vh;
+  min-height: 100dvh;
+  border-radius: 0;
   background:
     linear-gradient(135deg, rgba(37, 99, 235, .18), transparent 48%),
     #14265d;
@@ -53,18 +56,19 @@
   z-index: 2;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-end;
   min-width: 0;
   background: linear-gradient(90deg, rgba(11, 19, 43, .45), transparent);
 }
 
 .ftsp-auth__character img {
   display: block;
-  width: min(390px, 100%);
-  max-height: 88%;
+  width: min(430px, 100%);
+  max-height: 90%;
   object-fit: contain;
   object-position: center bottom;
   filter: drop-shadow(0 28px 34px rgba(0, 0, 0, .4));
+  transform: translateX(58px);
 }
 
 .ftsp-auth__content {
@@ -73,8 +77,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: min(540px, 100%);
-  padding: 54px 58px;
+  width: min(600px, 100%);
+  padding: 54px 72px 54px 44px;
   color: #fff;
 }
 
@@ -92,12 +96,11 @@
 
 .ftsp-auth__brand div {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   align-items: baseline;
   column-gap: 7px;
 }
 
-.ftsp-auth__brand span,
 .ftsp-auth__brand strong {
   font-size: 27px;
   font-style: italic;
@@ -247,6 +250,16 @@
   color: #fff;
 }
 
+.ftsp-auth__help button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #b6ff00;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
 .ftsp-auth__version {
   align-self: center;
   margin-top: auto;
@@ -265,6 +278,7 @@
   .ftsp-auth__panel { grid-template-columns: 1fr; min-height: 100dvh; border-radius: 0; }
   .ftsp-auth__character { position: absolute; left: -45px; bottom: 0; width: 220px; height: 58%; opacity: .22; pointer-events: none; }
   .ftsp-auth__character img { width: 100%; max-height: 100%; }
+  .ftsp-auth__character img { transform: translateX(22px); }
   .ftsp-auth__content { width: 100%; min-height: 100dvh; padding: max(34px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); }
   .ftsp-auth__brand img { width: 58px; height: 58px; border-radius: 17px; }
   .ftsp-auth__brand span, .ftsp-auth__brand strong { font-size: 23px; }
@@ -272,6 +286,164 @@
   .ftsp-auth__heading h1 { font-size: 34px; }
   .ftsp-auth__form { margin-top: 30px; }
   .ftsp-auth__version { position: relative; z-index: 2; margin-top: auto; }
+}
+
+.ftsp-register {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.ftsp-register__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: rgba(5, 9, 20, .82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ftsp-register__card {
+  position: relative;
+  z-index: 2;
+  overflow: auto;
+  width: min(650px, 100%);
+  max-height: calc(100dvh - 40px);
+  padding: 26px;
+  border: 1px solid rgba(148, 163, 184, .28);
+  border-radius: 24px;
+  background: #fff;
+  color: #0b132b;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+}
+
+.ftsp-register__card > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.ftsp-register__card header span {
+  color: #1e3a8a;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.ftsp-register__card h2 {
+  margin: 5px 0 0;
+  font-size: 25px;
+  letter-spacing: -.03em;
+}
+
+.ftsp-register__card header > button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #334155;
+  cursor: pointer;
+}
+
+.ftsp-register__type {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.ftsp-register__type label {
+  position: relative;
+  cursor: pointer;
+}
+
+.ftsp-register__type input {
+  position: absolute;
+  opacity: 0;
+}
+
+.ftsp-register__type span {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.ftsp-register__type input:checked + span {
+  border-color: #1e3a8a;
+  background: #eff6ff;
+  box-shadow: inset 0 0 0 1px #1e3a8a;
+}
+
+.ftsp-register__type b { font-size: 12px; }
+.ftsp-register__type small { color: #64748b; font-size: 10px; }
+
+.ftsp-register__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.ftsp-register__grid label { display: grid; gap: 7px; }
+.ftsp-register__grid label.is-full { grid-column: 1 / -1; }
+.ftsp-register__grid label > span { color: #334155; font-size: 11px; font-weight: 700; }
+.ftsp-register__grid label > span small { color: #94a3b8; font-weight: 500; }
+.ftsp-register__grid input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  outline: 0;
+}
+.ftsp-register__grid input:focus { border-color: #1e3a8a; box-shadow: 0 0 0 3px rgba(30, 58, 138, .1); }
+
+.ftsp-register__message {
+  margin: 16px 0 0;
+  padding: 13px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #1e3a8a;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.ftsp-register__message.is-success { background: #f0fdf4; color: #166534; }
+.ftsp-register__message.is-error { background: #fef2f2; color: #b91c1c; }
+
+.ftsp-register__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 17px;
+  border: 0;
+  border-radius: 13px;
+  background: #0b132b;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 800;
+}
+.ftsp-register__submit:disabled { opacity: .6; cursor: wait; }
+
+@media (max-width: 560px) {
+  .ftsp-register { padding: 0; align-items: end; }
+  .ftsp-register__card { width: 100%; max-height: 92dvh; padding: 22px 18px max(22px, env(safe-area-inset-bottom)); border-radius: 24px 24px 0 0; }
+  .ftsp-register__grid { grid-template-columns: 1fr; }
+  .ftsp-register__grid label.is-full { grid-column: auto; }
 }
 
 @media (max-width: 380px) {

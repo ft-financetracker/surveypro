@@ -509,8 +509,30 @@
   }
 
   .ftsp-insight-loading {
-    opacity: .58;
+    position: relative;
     pointer-events: none;
+  }
+
+  .ftsp-insight-loading::after {
+    content: "Memuat insight…";
+    position: fixed;
+    top: calc(var(--ftsp-topbar-height) + 16px);
+    left: calc((100% + var(--ftsp-sidebar-width)) / 2);
+    z-index: 80;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: var(--ftsp-navy-950);
+    color: var(--ftsp-white);
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: var(--ftsp-shadow-lg);
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 768px) {
+    .ftsp-insight-loading::after {
+      left: 50%;
+    }
   }
 
   @media (max-width: 1100px) {

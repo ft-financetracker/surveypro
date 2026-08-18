@@ -38,7 +38,9 @@
           true;
       }
 
-      loadFTSPSettings_();
+      if (!settingsState.original) {
+        loadFTSPSettings_();
+      }
     }
 
     function buildFTSPSettingsLayout_() {

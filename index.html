@@ -2,7 +2,9 @@
 <html lang="id">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>FT-SURVEYPRO</title>
+  <title>SurveyPro</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png?v=5">
+  <link rel="shortcut icon" href="./icons/icon-192.png?v=5">
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="./icons/icon-180.png">
 
@@ -18,7 +20,7 @@
 
   <meta
     name="description"
-    content="FT-SURVEYPRO — Survey Once. Analyze Smarter."
+    content="SurveyPro — Survey Once. Analyze Smarter."
   >
 
   <link
@@ -37,12 +39,12 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
   >
 
-  <link rel="stylesheet" href="./assets/css/app.css?v=4">
-  <link rel="stylesheet" href="./assets/css/pondok.css?v=4">
-  <link rel="stylesheet" href="./assets/css/survey.css?v=4">
-  <link rel="stylesheet" href="./assets/css/insight.css?v=4">
-  <link rel="stylesheet" href="./assets/css/settings.css?v=4">
-  <link rel="stylesheet" href="./assets/css/auth.css?v=4">
+  <link rel="stylesheet" href="./assets/css/app.css?v=5">
+  <link rel="stylesheet" href="./assets/css/pondok.css?v=5">
+  <link rel="stylesheet" href="./assets/css/survey.css?v=5">
+  <link rel="stylesheet" href="./assets/css/insight.css?v=5">
+  <link rel="stylesheet" href="./assets/css/settings.css?v=5">
+  <link rel="stylesheet" href="./assets/css/auth.css?v=5">
 </head>
 
 <body>
@@ -55,9 +57,8 @@
 
         <main class="ftsp-auth__content">
           <div class="ftsp-auth__brand">
-            <img src="./icons/icon-192.png" alt="Logo FT-SURVEYPRO">
+            <img src="./icons/icon-192.png" alt="Logo SurveyPro">
             <div>
-              <span>FT</span>
               <strong>SurveyPro</strong>
               <small>Survey Once. Analyze Smarter.</small>
             </div>
@@ -94,12 +95,72 @@
           </form>
 
           <p class="ftsp-auth__help">
-            Belum mempunyai akun? <strong>Hubungi Administrator.</strong>
+            Belum mempunyai akun?
+            <button type="button" id="openRegistration">Ajukan pendaftaran</button>
           </p>
 
-          <div class="ftsp-auth__version">FT-SURVEYPRO • v0.1.0-alpha</div>
+          <div class="ftsp-auth__version">SURVEYPRO • v0.1.0-alpha</div>
         </main>
       </div>
+    </div>
+
+    <div class="ftsp-register" id="registrationModal" hidden>
+      <button class="ftsp-register__backdrop" type="button" data-registration-close aria-label="Tutup pendaftaran"></button>
+
+      <section class="ftsp-register__card" role="dialog" aria-modal="true" aria-labelledby="registrationTitle">
+        <header>
+          <div>
+            <span>PENDAFTARAN AKUN</span>
+            <h2 id="registrationTitle">Buat akses SurveyPro</h2>
+          </div>
+          <button type="button" data-registration-close aria-label="Tutup">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </header>
+
+        <form id="registrationForm">
+          <div class="ftsp-register__type">
+            <label>
+              <input type="radio" name="applicantType" value="PERSONAL" checked>
+              <span><b>Perorangan</b><small>Akun untuk pengguna individu</small></span>
+            </label>
+            <label>
+              <input type="radio" name="applicantType" value="INSTITUTION">
+              <span><b>Lembaga</b><small>Akun mewakili institusi</small></span>
+            </label>
+          </div>
+
+          <div class="ftsp-register__grid">
+            <label class="is-full">
+              <span>Nama lengkap / nama lembaga *</span>
+              <input name="name" type="text" maxlength="80" required>
+            </label>
+            <label>
+              <span>Username *</span>
+              <input name="username" type="text" minlength="3" maxlength="30" autocomplete="username" autocapitalize="none" required>
+            </label>
+            <label>
+              <span>Password *</span>
+              <input name="password" type="password" minlength="8" autocomplete="new-password" required>
+            </label>
+            <label>
+              <span>Nomor HP <small>(opsional)</small></span>
+              <input name="phone" type="tel" inputmode="tel">
+            </label>
+            <label>
+              <span>Email <small>(opsional)</small></span>
+              <input name="email" type="email" autocomplete="email">
+            </label>
+          </div>
+
+          <p class="ftsp-register__message" id="registrationMessage" role="status" hidden></p>
+
+          <button class="ftsp-register__submit" id="registrationSubmit" type="submit">
+            <span id="registrationSubmitLabel">Kirim Pendaftaran</span>
+            <span class="material-symbols-rounded" aria-hidden="true">send</span>
+          </button>
+        </form>
+      </section>
     </div>
   </section>
 
@@ -116,7 +177,7 @@
       </div>
 
       <div>
-        <strong>FT-SURVEYPRO</strong>
+        <strong>SurveyPro</strong>
         <small>
           Survey Once. Analyze Smarter.
         </small>
@@ -238,7 +299,7 @@
 
       <div class="ftsp-sidebar__footer">
         <span>
-          FT-SURVEYPRO
+          SurveyPro
         </span>
 
         <small>
@@ -315,7 +376,7 @@
           <div class="ftsp-hero">
             <div class="ftsp-hero__content">
               <p class="ftsp-hero__eyebrow">
-                FT-SURVEYPRO
+                SurveyPro
               </p>
 
               <h2>
@@ -1747,13 +1808,13 @@
   </section>
 </div>
 
-  <script src="./assets/js/config.js?v=4"></script>
-  <script src="./assets/js/api.js?v=4"></script>
-  <script src="./assets/js/auth.js?v=4"></script>
-  <script src="./assets/js/app.js?v=4"></script>
-  <script src="./assets/js/pondok.js?v=4"></script>
-  <script src="./assets/js/survey.js?v=4"></script>
-  <script src="./assets/js/insight.js?v=4"></script>
-  <script src="./assets/js/settings.js?v=4"></script>
+  <script src="./assets/js/config.js?v=5"></script>
+  <script src="./assets/js/api.js?v=5"></script>
+  <script src="./assets/js/auth.js?v=5"></script>
+  <script src="./assets/js/app.js?v=5"></script>
+  <script src="./assets/js/pondok.js?v=5"></script>
+  <script src="./assets/js/survey.js?v=5"></script>
+  <script src="./assets/js/insight.js?v=5"></script>
+  <script src="./assets/js/settings.js?v=5"></script>
 </body>
 </html>

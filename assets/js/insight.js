@@ -72,7 +72,11 @@
           true;
       }
 
-      loadFTSPInsight_();
+      if (!insightState.data) {
+        loadFTSPInsight_();
+      } else {
+        drawFTSPInsightCharts_(insightState.data);
+      }
     }
 
     function buildFTSPInsightLayout_() {

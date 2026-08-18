@@ -29,8 +29,94 @@
     dom.form?.addEventListener('submit', handleLogin);
     dom.toggle?.addEventListener('click', togglePassword);
     document.getElementById('logoutButton')
-      ?.addEventListener('click', () => window.FTSPApi.logout());
+      ?.addEventListener('click', confirmLogout);
+    document.getElementById('openRegistration')
+      ?.addEventListener('click', openRegistration);
+    document.getElementById('registrationForm')
+      ?.addEventListener('submit', handleRegistration);
+    document.querySelectorAll('[data-registration-close]')
+      .forEach(element => element.addEventListener('click', closeRegistration));
     window.addEventListener('ftsp:auth-required', showLogin);
+  }
+
+  function confirmLogout() {
+    const confirmed = window.confirm(
+      'Yakin ingin keluar dari SurveyPro? Anda perlu login kembali untuk membuka aplikasi.'
+    );
+
+    if (confirmed) {
+      window.FTSPApi.logout();
+    }
+  }
+
+  function openRegistration() {
+    const modal = document.getElementById('registrationModal');
+    if (!modal) return;
+    modal.hidden = false;
+    setRegistrationMessage('', '');
+    window.setTimeout(
+      () => document.querySelector('#registrationForm [name="name"]')?.focus(),
+      80
+    );
+  }
+
+  function closeRegistration() {
+    const modal = document.getElementById('registrationModal');
+    if (modal) modal.hidden = true;
+  }
+
+  async function handleRegistration(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const submit = document.getElementById('registrationSubmit');
+    const label = document.getElementById('registrationSubmitLabel');
+    const data = new FormData(form);
+
+    const payload = {
+      applicantType: data.get('applicantType'),
+      name: String(data.get('name') || '').trim(),
+      username: String(data.get('username') || '').trim(),
+      password: String(data.get('password') || ''),
+      phone: String(data.get('phone') || '').trim(),
+      email: String(data.get('email') || '').trim()
+    };
+
+    setRegistrationMessage('', '');
+    if (submit) submit.disabled = true;
+    if (label) label.textContent = 'Mengirim...';
+
+    try {
+      const response = await window.FTSPApi.registerAccount(payload);
+
+      if (!response || response.success !== true) {
+        setRegistrationMessage(response?.message || 'Pendaftaran gagal.', 'error');
+        return;
+      }
+
+      form.reset();
+      setRegistrationMessage(
+        'Pendaftaran berhasil dikirim. Akun Anda sedang menunggu pemeriksaan dan persetujuan Administrator. Silakan login setelah akun dinyatakan aktif.',
+        'success'
+      );
+    } catch (error) {
+      setRegistrationMessage(
+        error?.message || 'Server tidak dapat dihubungi.',
+        'error'
+      );
+    } finally {
+      if (submit) submit.disabled = false;
+      if (label) label.textContent = 'Kirim Pendaftaran';
+    }
+  }
+
+  function setRegistrationMessage(message, type) {
+    const element = document.getElementById('registrationMessage');
+    if (!element) return;
+    element.textContent = String(message || '');
+    element.hidden = !message;
+    element.classList.toggle('is-success', type === 'success');
+    element.classList.toggle('is-error', type === 'error');
   }
 
   function requireLogin() {
@@ -164,7 +250,7 @@
   window.FTSPAuth = Object.freeze({
     requireLogin,
     showLogin,
-    logout: () => window.FTSPApi.logout(),
+    logout: confirmLogout,
     currentUser: () => window.FTSPApi.getCurrentUser()
   });
 })();

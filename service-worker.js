@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ft-surveypro-v4';
+const CACHE_NAME = 'ft-surveypro-v5';
 
 const APP_SHELL = [
   './',
