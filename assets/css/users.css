@@ -1,0 +1,68 @@
+.ftsp-users { display: grid; gap: 16px; }
+.ftsp-users__hero { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px; border-radius: 22px; background: linear-gradient(135deg, #0b132b, #1e3a8a); color: #fff; }
+.ftsp-users__hero span, .ftsp-users__panel header span { color: #b6ff00; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+.ftsp-users__hero h2 { margin: 6px 0 0; font-size: 28px; }
+.ftsp-users__hero p { margin: 8px 0 0; color: rgba(255,255,255,.64); font-size: 12px; }
+.ftsp-users__hero button { display: inline-flex; align-items: center; gap: 7px; min-height: 42px; padding: 0 15px; border: 0; border-radius: 12px; background: #b6ff00; color: #0b132b; cursor: pointer; font-weight: 800; }
+.ftsp-users__stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.ftsp-users__stats article { padding: 18px; border: 1px solid #e2e8f0; border-radius: 17px; background: #fff; box-shadow: var(--ftsp-shadow); }
+.ftsp-users__stats span { color: #64748b; font-size: 11px; font-weight: 700; }
+.ftsp-users__stats strong { display: block; margin-top: 10px; color: #0b132b; font-size: 28px; }
+.ftsp-users__panel { padding: 20px; border: 1px solid #e2e8f0; border-radius: 18px; background: #fff; box-shadow: var(--ftsp-shadow); }
+.ftsp-users__panel header h3 { margin: 5px 0 16px; font-size: 17px; }
+.ftsp-users__request { display: grid; grid-template-columns: 42px minmax(170px, 1fr) 120px auto; align-items: center; gap: 12px; padding: 14px 0; border-top: 1px solid #f1f5f9; }
+.ftsp-users__avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: #0b132b; color: #b6ff00; font-weight: 800; }
+.ftsp-users__identity { min-width: 0; }
+.ftsp-users__identity strong, .ftsp-users__identity span, .ftsp-users__identity small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ftsp-users__identity strong { color: #0f172a; font-size: 12px; }
+.ftsp-users__identity span { margin-top: 4px; color: #64748b; font-size: 10px; }
+.ftsp-users__identity small { margin-top: 3px; color: #94a3b8; font-size: 9px; }
+.ftsp-users__request select { min-height: 38px; padding: 0 9px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; font-size: 10px; }
+.ftsp-users__actions { display: flex; gap: 7px; }
+.ftsp-users__actions button { min-height: 36px; padding: 0 10px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: #334155; cursor: pointer; font-size: 9px; font-weight: 800; }
+.ftsp-users__actions button.is-approve { border-color: #16a34a; background: #f0fdf4; color: #15803d; }
+.ftsp-users__actions button.is-reject { border-color: #dc2626; background: #fef2f2; color: #b91c1c; }
+.ftsp-users__empty { display: grid; place-items: center; gap: 8px; min-height: 130px; color: #94a3b8; font-size: 11px; }
+.ftsp-users.is-loading { pointer-events: none; }
+.ftsp-users.is-loading::after { content: "Memproses…"; position: fixed; top: calc(var(--ftsp-topbar-height) + 16px); left: calc((100% + var(--ftsp-sidebar-width)) / 2); z-index: 300; padding: 10px 16px; border-radius: 999px; background: #0b132b; color: #fff; font-size: 10px; font-weight: 800; transform: translateX(-50%); }
+
+.ftsp-admin-drawer { position: fixed; inset: 0; z-index: 500; }
+.ftsp-admin-drawer__backdrop { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: rgba(11,19,43,.48); backdrop-filter: blur(4px); }
+.ftsp-admin-drawer > aside { position: absolute; top: 0; right: 0; width: min(370px, 90vw); height: 100%; padding: 22px; background: #fff; box-shadow: -20px 0 50px rgba(11,19,43,.2); }
+.ftsp-admin-drawer header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.ftsp-admin-drawer header span { color: #1e3a8a; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+.ftsp-admin-drawer header strong { display: block; margin-top: 4px; font-size: 18px; }
+.ftsp-admin-drawer header button { display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 12px; cursor: pointer; }
+.ftsp-admin-drawer aside > button { display: grid; grid-template-columns: 42px 1fr; align-items: center; gap: 12px; width: 100%; padding: 13px; border: 0; border-radius: 14px; background: transparent; color: #0b132b; cursor: pointer; text-align: left; }
+.ftsp-admin-drawer aside > button:hover { background: #f1f5f9; }
+.ftsp-admin-drawer aside > button > .material-symbols-rounded { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: #eff6ff; color: #1e3a8a; }
+.ftsp-admin-drawer aside > button b, .ftsp-admin-drawer aside > button small { display: block; }
+.ftsp-admin-drawer aside > button b { font-size: 12px; }
+.ftsp-admin-drawer aside > button small { margin-top: 4px; color: #64748b; font-size: 9px; }
+
+.ftsp-bottom-nav__diamond { display: none; }
+
+.ftsp-confirm { position: fixed; inset: 0; z-index: 10050; display: grid; place-items: center; padding: 20px; }
+.ftsp-confirm__backdrop { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: rgba(5,9,20,.72); backdrop-filter: blur(7px); }
+.ftsp-confirm section { position: relative; z-index: 2; width: min(420px, 100%); padding: 26px; border-radius: 22px; background: #fff; color: #0b132b; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.34); }
+.ftsp-confirm section > .material-symbols-rounded { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto; border-radius: 18px; background: #fef2f2; color: #dc2626; font-size: 28px; }
+.ftsp-confirm h2 { margin: 17px 0 0; font-size: 21px; }
+.ftsp-confirm p { margin: 9px 0 22px; color: #64748b; font-size: 11px; line-height: 1.6; }
+.ftsp-confirm section div { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ftsp-confirm section div button { min-height: 44px; border: 0; border-radius: 12px; cursor: pointer; font-weight: 800; }
+.ftsp-confirm section div button:first-child { background: #f1f5f9; color: #334155; }
+.ftsp-confirm #confirmLogoutButton { background: #dc2626; color: #fff; }
+
+@media (max-width: 768px) {
+  #adminMenuButton { display: none !important; }
+  .ftsp-bottom-nav__diamond { position: absolute; top: -27px; left: 50%; z-index: 3; display: grid; place-items: center; width: 54px; height: 54px; border: 5px solid #fff; border-radius: 15px; background: #b6ff00; color: #0b132b; cursor: pointer; box-shadow: 0 12px 28px rgba(11,19,43,.24); transform: translateX(-50%) rotate(45deg); }
+  .ftsp-bottom-nav__diamond .material-symbols-rounded { transform: rotate(-45deg); }
+  .ftsp-users__request { grid-template-columns: 40px minmax(0, 1fr); }
+  .ftsp-users__request select, .ftsp-users__actions { grid-column: 2; }
+  .ftsp-users__actions { flex-wrap: wrap; }
+  .ftsp-users__hero { align-items: flex-start; padding: 20px; }
+  .ftsp-users__hero p { max-width: 220px; }
+  .ftsp-users__hero button { width: 42px; padding: 0; font-size: 0; }
+  .ftsp-users__panel { padding: 16px; }
+  .ftsp-users.is-loading::after { left: 50%; }
+}

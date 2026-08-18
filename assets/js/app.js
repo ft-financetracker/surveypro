@@ -32,6 +32,11 @@
       settings: {
         eyebrow: 'Konfigurasi',
         title: 'Pengaturan'
+      },
+
+      users: {
+        eyebrow: 'Administrator',
+        title: 'Manajemen Akun'
       }
     };
 
@@ -197,6 +202,11 @@
         ?.addEventListener(
           'click',
           () => {
+            showToast(
+              'Memperbarui data…',
+              'info'
+            );
+
             loadApplication({
               showSuccessToast: true
             });
@@ -592,6 +602,15 @@ function escapeHtml(
           'function'
       ) {
         window.FTSPInsight.mount();
+      }
+
+      if (
+        route === 'users' &&
+        window.FTSPUsers &&
+        typeof window.FTSPUsers.mount ===
+          'function'
+      ) {
+        window.FTSPUsers.mount();
       }
 
       if (

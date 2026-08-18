@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ft-surveypro-v5';
+const CACHE_NAME = 'ft-surveypro-v6';
 
 const APP_SHELL = [
   './',
@@ -11,6 +11,7 @@ const APP_SHELL = [
   './assets/css/insight.css',
   './assets/css/settings.css',
   './assets/css/auth.css',
+  './assets/css/users.css',
   './assets/js/config.js',
   './assets/js/api.js',
   './assets/js/auth.js',
@@ -19,6 +20,7 @@ const APP_SHELL = [
   './assets/js/survey.js',
   './assets/js/insight.js',
   './assets/js/settings.js',
+  './assets/js/users.js',
   './icons/icon-180.png',
   './icons/icon-192.png',
   './icons/icon-512.png',

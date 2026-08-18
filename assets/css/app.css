@@ -459,6 +459,14 @@
     color: var(--ftsp-blue-700);
   }
 
+  .ftsp-icon-btn.is-loading .material-symbols-rounded {
+    animation: ftsp-refresh-spin .8s linear infinite;
+  }
+
+  @keyframes ftsp-refresh-spin {
+    to { transform: rotate(360deg); }
+  }
+
   .ftsp-primary-btn {
     min-height: 44px;
     padding: 0 16px;

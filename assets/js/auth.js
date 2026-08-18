@@ -30,29 +30,58 @@
     dom.toggle?.addEventListener('click', togglePassword);
     document.getElementById('logoutButton')
       ?.addEventListener('click', confirmLogout);
+    document.getElementById('adminMenuButton')
+      ?.addEventListener('click', openAdminDrawer);
+    document.getElementById('mobileAdminMenuButton')
+      ?.addEventListener('click', openAdminDrawer);
+    document.querySelectorAll('[data-admin-close]')
+      .forEach(element => element.addEventListener('click', closeAdminDrawer));
+    document.querySelectorAll('[data-admin-route]')
+      .forEach(element => element.addEventListener('click', () => {
+        closeAdminDrawer();
+        window.FTSPApp?.navigate(element.dataset.adminRoute);
+      }));
+    document.querySelectorAll('[data-logout-cancel]')
+      .forEach(element => element.addEventListener('click', closeLogoutModal));
+    document.getElementById('confirmLogoutButton')
+      ?.addEventListener('click', () => window.FTSPApi.logout());
     document.getElementById('openRegistration')
       ?.addEventListener('click', openRegistration);
     document.getElementById('registrationForm')
       ?.addEventListener('submit', handleRegistration);
     document.querySelectorAll('[data-registration-close]')
       .forEach(element => element.addEventListener('click', closeRegistration));
+    document.getElementById('registrationDone')
+      ?.addEventListener('click', closeRegistration);
     window.addEventListener('ftsp:auth-required', showLogin);
   }
 
   function confirmLogout() {
-    const confirmed = window.confirm(
-      'Yakin ingin keluar dari SurveyPro? Anda perlu login kembali untuk membuka aplikasi.'
-    );
+    const modal = document.getElementById('logoutModal');
+    if (modal) modal.hidden = false;
+  }
 
-    if (confirmed) {
-      window.FTSPApi.logout();
-    }
+  function closeLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    if (modal) modal.hidden = true;
+  }
+
+  function openAdminDrawer() {
+    const drawer = document.getElementById('adminDrawer');
+    if (drawer) drawer.hidden = false;
+  }
+
+  function closeAdminDrawer() {
+    const drawer = document.getElementById('adminDrawer');
+    if (drawer) drawer.hidden = true;
   }
 
   function openRegistration() {
     const modal = document.getElementById('registrationModal');
     if (!modal) return;
     modal.hidden = false;
+    document.getElementById('registrationForm')?.removeAttribute('hidden');
+    document.getElementById('registrationSuccess')?.setAttribute('hidden', '');
     setRegistrationMessage('', '');
     window.setTimeout(
       () => document.querySelector('#registrationForm [name="name"]')?.focus(),
@@ -95,10 +124,8 @@
       }
 
       form.reset();
-      setRegistrationMessage(
-        'Pendaftaran berhasil dikirim. Akun Anda sedang menunggu pemeriksaan dan persetujuan Administrator. Silakan login setelah akun dinyatakan aktif.',
-        'success'
-      );
+      form.hidden = true;
+      document.getElementById('registrationSuccess')?.removeAttribute('hidden');
     } catch (error) {
       setRegistrationMessage(
         error?.message || 'Server tidak dapat dihubungi.',
@@ -191,6 +218,10 @@
     document.documentElement.dataset.userRole = role;
 
     document.querySelectorAll('[data-route="settings"]').forEach(element => {
+      element.hidden = role !== 'ADMIN';
+    });
+
+    document.querySelectorAll('.ftsp-admin-only').forEach(element => {
       element.hidden = role !== 'ADMIN';
     });
 
