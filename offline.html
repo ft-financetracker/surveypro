@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0B132B">
+  <title>FT-SURVEYPRO — Offline</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 24px; background: #0B132B; color: #fff; font-family: Inter, system-ui, sans-serif; text-align: center; }
+    main { max-width: 420px; }
+    .mark { display: grid; place-items: center; width: 72px; height: 72px; margin: 0 auto 22px; border-radius: 22px; background: linear-gradient(145deg, #fff 0 50%, #B6FF00 50%); color: #0B132B; font-size: 22px; font-style: italic; font-weight: 800; }
+    h1 { margin: 0; font-size: 24px; }
+    p { margin: 12px 0 24px; color: rgba(255,255,255,.68); line-height: 1.65; }
+    button { min-height: 46px; padding: 0 20px; border: 0; border-radius: 13px; background: #B6FF00; color: #0B132B; font: inherit; font-weight: 800; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark">FT</div>
+    <h1>Koneksi internet terputus</h1>
+    <p>Data SurveyPro tersimpan di server. Sambungkan internet lalu muat ulang aplikasi.</p>
+    <button type="button" onclick="location.reload()">Coba Lagi</button>
+  </main>
+</body>
+</html>

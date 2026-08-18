@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FT-SURVEYPRO</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icons/icon-180.png">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="theme-color"
+    content="#0B132B"
+  >
+
+  <meta
+    name="description"
+    content="FT-SURVEYPRO — Survey Once. Analyze Smarter."
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
+  >
+
+  <link rel="stylesheet" href="./assets/css/app.css">
+  <link rel="stylesheet" href="./assets/css/pondok.css">
+  <link rel="stylesheet" href="./assets/css/survey.css">
+  <link rel="stylesheet" href="./assets/css/insight.css">
+  <link rel="stylesheet" href="./assets/css/settings.css">
+</head>
+
+<body>
+  <div
+    class="ftsp-loader"
+    id="pageLoader"
+    aria-live="polite"
+    aria-label="Memuat aplikasi"
+  >
+    <div class="ftsp-loader__brand">
+      <div class="ftsp-loader__mark">
+        <span>FT</span>
+      </div>
+
+      <div>
+        <strong>FT-SURVEYPRO</strong>
+        <small>
+          Survey Once. Analyze Smarter.
+        </small>
+      </div>
+    </div>
+
+    <div
+      class="ftsp-loader__bar"
+      aria-hidden="true"
+    >
+      <span></span>
+    </div>
+  </div>
+
+  <div
+    class="ftsp-app"
+    id="app"
+    hidden
+  >
+    <aside
+      class="ftsp-sidebar"
+      id="sidebar"
+    >
+      <div class="ftsp-brand">
+        <div class="ftsp-brand__mark">
+          <span>FT</span>
+        </div>
+
+        <div class="ftsp-brand__text">
+          <strong>
+            SurveyPro
+          </strong>
+
+          <span>
+            Finance Tracker
+          </span>
+        </div>
+      </div>
+
+      <nav
+        class="ftsp-nav"
+        aria-label="Navigasi utama"
+      >
+        <button
+          class="ftsp-nav__item is-active"
+          type="button"
+          data-route="dashboard"
+        >
+          <span
+            class="material-symbols-rounded"
+            aria-hidden="true"
+          >
+            dashboard
+          </span>
+
+          <span>Dashboard</span>
+        </button>
+
+        <button
+          class="ftsp-nav__item"
+          type="button"
+          data-route="survey"
+        >
+          <span
+            class="material-symbols-rounded"
+            aria-hidden="true"
+          >
+            assignment
+          </span>
+
+          <span>Survey</span>
+        </button>
+
+        <button
+          class="ftsp-nav__item"
+          type="button"
+          data-route="pondok"
+        >
+          <span
+            class="material-symbols-rounded"
+            aria-hidden="true"
+          >
+            domain
+          </span>
+
+          <span>Data Pondok</span>
+        </button>
+
+        <button
+          class="ftsp-nav__item"
+          type="button"
+          data-route="insight"
+        >
+          <span
+            class="material-symbols-rounded"
+            aria-hidden="true"
+          >
+            analytics
+          </span>
+
+          <span>Insight</span>
+        </button>
+
+        <button
+          class="ftsp-nav__item"
+          type="button"
+          data-route="settings"
+        >
+          <span
+            class="material-symbols-rounded"
+            aria-hidden="true"
+          >
+            settings
+          </span>
+
+          <span>Pengaturan</span>
+        </button>
+      </nav>
+
+      <div class="ftsp-sidebar__footer">
+        <span>
+          FT-SURVEYPRO
+        </span>
+
+        <small>
+          v0.1.0-alpha
+        </small>
+      </div>
+    </aside>
+
+    <div class="ftsp-main">
+      <header class="ftsp-topbar">
+        <div class="ftsp-topbar__title">
+          <p id="pageEyebrow">
+            Ringkasan
+          </p>
+
+          <h1 id="pageTitle">
+            Dashboard
+          </h1>
+        </div>
+
+        <div class="ftsp-topbar__actions">
+          <button
+            class="ftsp-icon-btn"
+            id="refreshButton"
+            type="button"
+            aria-label="Muat ulang data"
+            title="Muat ulang"
+          >
+            <span
+              class="material-symbols-rounded"
+              aria-hidden="true"
+            >
+              refresh
+            </span>
+          </button>
+
+          <button
+            class="ftsp-primary-btn"
+            id="quickAddButton"
+            type="button"
+          >
+            <span
+              class="material-symbols-rounded"
+              aria-hidden="true"
+            >
+              add
+            </span>
+
+            <span>
+              Survey Baru
+            </span>
+          </button>
+        </div>
+      </header>
+
+      <main
+        class="ftsp-content"
+        id="pageContent"
+      >
+        <section
+          class="ftsp-page is-active"
+          data-page="dashboard"
+        >
+          <div class="ftsp-hero">
+            <div class="ftsp-hero__content">
+              <p class="ftsp-hero__eyebrow">
+                FT-SURVEYPRO
+              </p>
+
+              <h2>
+                Data sederhana.
+                Analisis lebih terarah.
+              </h2>
+
+              <p>
+                Kumpulkan data PSB dan SPP pondok,
+                lalu gunakan hasilnya sebagai dasar
+                pemetaan tarif dan kebijakan.
+              </p>
+
+              <button
+                class="ftsp-accent-btn"
+                type="button"
+                data-action="open-survey"
+              >
+                <span
+                  class="material-symbols-rounded"
+                  aria-hidden="true"
+                >
+                  add_notes
+                </span>
+
+                <span>
+                  Mulai Survey
+                </span>
+              </button>
+            </div>
+
+            <div
+              class="ftsp-hero__visual"
+              aria-hidden="true"
+            >
+              <span
+                class="material-symbols-rounded"
+              >
+                monitoring
+              </span>
+            </div>
+          </div>
+
+          <div class="ftsp-kpi-grid">
+            <article class="ftsp-kpi-card">
+              <div class="ftsp-kpi-card__head">
+                <span class="ftsp-kpi-card__icon">
+                  <span
+                    class="material-symbols-rounded"
+                    aria-hidden="true"
+                  >
+                    domain
+                  </span>
+                </span>
+
+                <span class="ftsp-kpi-card__label">
+                  Total Pondok
+                </span>
+              </div>
+
+              <strong
+                class="ftsp-kpi-card__value"
+                id="totalPondok"
+              >
+                0
+              </strong>
+
+              <small>
+                Pondok terdaftar
+              </small>
+            </article>
+
+            <article class="ftsp-kpi-card">
+              <div class="ftsp-kpi-card__head">
+                <span class="ftsp-kpi-card__icon">
+                  <span
+                    class="material-symbols-rounded"
+                    aria-hidden="true"
+                  >
+                    assignment
+                  </span>
+                </span>
+
+                <span class="ftsp-kpi-card__label">
+                  Total Survey
+                </span>
+              </div>
+
+              <strong
+                class="ftsp-kpi-card__value"
+                id="totalSurvey"
+              >
+                0
+              </strong>
+
+              <small>
+                Data tarif tersimpan
+              </small>
+            </article>
+
+            <article class="ftsp-kpi-card">
+              <div class="ftsp-kpi-card__head">
+                <span class="ftsp-kpi-card__icon">
+                  <span
+                    class="material-symbols-rounded"
+                    aria-hidden="true"
+                  >
+                    verified
+                  </span>
+                </span>
+
+                <span class="ftsp-kpi-card__label">
+                  Terverifikasi
+                </span>
+              </div>
+
+              <strong
+                class="ftsp-kpi-card__value"
+                id="verifiedSurvey"
+              >
+                0
+              </strong>
+
+              <small>
+                Data siap dianalisis
+              </small>
+            </article>
+
+            <article class="ftsp-kpi-card">
+              <div class="ftsp-kpi-card__head">
+                <span class="ftsp-kpi-card__icon">
+                  <span
+                    class="material-symbols-rounded"
+                    aria-hidden="true"
+                  >
+                    map
+                  </span>
+                </span>
+
+                <span class="ftsp-kpi-card__label">
+                  Wilayah
+                </span>
+              </div>
+
+              <strong
+                class="ftsp-kpi-card__value"
+                id="totalRegion"
+              >
+                0
+              </strong>
+
+              <small>
+                Area survey aktif
+              </small>
+            </article>
+          </div>
+
+          <div class="ftsp-dashboard-grid">
+            <section class="ftsp-panel">
+              <div class="ftsp-panel__head">
+                <div>
+                  <p class="ftsp-panel__eyebrow">
+                    Aktivitas
+                  </p>
+
+                  <h3>
+                    Status Pengumpulan Data
+                  </h3>
+                </div>
+
+                <button
+                  class="ftsp-text-btn"
+                  type="button"
+                  data-route-target="survey"
+                >
+                  Lihat Survey
+                </button>
+              </div>
+
+              <div
+                  class="ftsp-activity-list"
+                  id="dashboardActivityList"
+                  hidden
+                ></div>
+
+              <div
+                    class="ftsp-empty-state"
+                    id="dashboardActivityEmpty"
+                  >
+                    <span
+                      class="material-symbols-rounded"
+                      aria-hidden="true"
+                    >
+                      data_exploration
+                    </span>
+
+                    <strong>
+                      Belum ada aktivitas
+                    </strong>
+
+                    <p>
+                      Aktivitas terbaru akan muncul setelah
+                      pondok atau survey disimpan.
+                    </p>
+              </div>
+            </section>
+
+            <section class="ftsp-panel">
+              <div class="ftsp-panel__head">
+                <div>
+                  <p class="ftsp-panel__eyebrow">
+                    Sistem
+                  </p>
+
+                  <h3>
+                    Informasi Aplikasi
+                  </h3>
+                </div>
+              </div>
+
+              <dl class="ftsp-info-list">
+                <div>
+                  <dt>Status</dt>
+                  <dd>
+                    <span class="ftsp-status">
+                      Development
+                    </span>
+                  </dd>
+                </div>
+
+                <div>
+                  <dt>Versi</dt>
+                  <dd>
+                    0.1.0-alpha
+                  </dd>
+                </div>
+
+                <div>
+                  <dt>Pembaruan terakhir</dt>
+                  <dd id="lastUpdate">
+                    Belum tersedia
+                  </dd>
+                </div>
+
+                <div>
+                  <dt>Ikon antarmuka</dt>
+                  <dd>
+                    Material Symbols Rounded
+                  </dd>
+                </div>
+              </dl>
+            </section>
+          </div>
+        </section>
+
+        <section
+          class="ftsp-page"
+          data-page="survey"
+        >
+          <div class="ftsp-placeholder-page">
+            <span
+              class="material-symbols-rounded"
+              aria-hidden="true"
+            >
+              assignment
+            </span>
+
+            <h2>
+              Survey
+            </h2>
+
+            <p>
+              Form input survey akan dibangun
+              pada fase berikutnya.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="ftsp-page"
+          data-page="pondok"
+        >
+          <div class="ftsp-placeholder-page">
+            <span
+              class="material-symbols-rounded"
+              aria-hidden="true"
+            >
+              domain
+            </span>
+
+            <h2>
+              Data Pondok
+            </h2>
+
+            <p>
+              Master pondok dan lokasi Google Maps
+              akan ditampilkan di halaman ini.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="ftsp-page"
+          data-page="insight"
+        >
+          <div class="ftsp-placeholder-page">
+            <span
+              class="material-symbols-rounded"
+              aria-hidden="true"
+            >
+              analytics
+            </span>
+
+            <h2>
+              Insight
+            </h2>
+
+            <p>
+              Median, rata-rata, ranking, dan
+              analisis tarif akan tersedia di sini.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="ftsp-page"
+          data-page="settings"
+        >
+          <div class="ftsp-placeholder-page">
+            <span
+              class="material-symbols-rounded"
+              aria-hidden="true"
+            >
+              settings
+            </span>
+
+            <h2>
+              Pengaturan
+            </h2>
+
+            <p>
+              Pengaturan aplikasi dan referensi
+              wilayah akan dikelola di halaman ini.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <nav
+      class="ftsp-bottom-nav"
+      aria-label="Navigasi mobile"
+    >
+      <button
+        class="ftsp-bottom-nav__item is-active"
+        type="button"
+        data-route="dashboard"
+      >
+        <span
+          class="material-symbols-rounded"
+          aria-hidden="true"
+        >
+          dashboard
+        </span>
+
+        <span>Dashboard</span>
+      </button>
+
+      <button
+        class="ftsp-bottom-nav__item"
+        type="button"
+        data-route="survey"
+      >
+        <span
+          class="material-symbols-rounded"
+          aria-hidden="true"
+        >
+          assignment
+        </span>
+
+        <span>Survey</span>
+      </button>
+
+      <button
+        class="ftsp-bottom-nav__item"
+        type="button"
+        data-route="pondok"
+      >
+        <span
+          class="material-symbols-rounded"
+          aria-hidden="true"
+        >
+          domain
+        </span>
+
+        <span>Pondok</span>
+      </button>
+
+      <button
+        class="ftsp-bottom-nav__item"
+        type="button"
+        data-route="insight"
+      >
+        <span
+          class="material-symbols-rounded"
+          aria-hidden="true"
+        >
+          analytics
+        </span>
+
+        <span>Insight</span>
+      </button>
+
+      <button
+        class="ftsp-bottom-nav__item"
+        type="button"
+        data-route="settings"
+      >
+        <span
+          class="material-symbols-rounded"
+          aria-hidden="true"
+        >
+          settings
+        </span>
+
+        <span>Setting</span>
+      </button>
+    </nav>
+  </div>
+
+  <div
+    class="ftsp-toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  >
+    <span
+      class="material-symbols-rounded"
+      id="toastIcon"
+      aria-hidden="true"
+    >
+      check_circle
+    </span>
+
+    <span id="toastMessage"></span>
+  </div>
+
+
+<template id="FTSPPondokTemplate">
+  <section
+    class="ftsp-pondok"
+    data-ftsp-pondok-root
+  >
+    <header class="ftsp-pondok__header">
+      <div>
+        <p class="ftsp-pondok__eyebrow">
+          Database Survey
+        </p>
+
+        <h1 class="ftsp-pondok__title">
+          Master Pondok
+        </h1>
+
+        <p class="ftsp-pondok__subtitle">
+          Kelola identitas pondok yang menjadi
+          sumber data survei PSB, SPP, dan biaya
+          pendidikan.
+        </p>
+      </div>
+
+      <button
+        class="
+          ftsp-pondok__button
+          ftsp-pondok__button--primary
+        "
+        type="button"
+        data-ftsp-pondok-add
+      >
+        <span
+          class="
+            material-symbols-rounded
+            ftsp-pondok__button-icon
+          "
+        >
+          add
+        </span>
+
+        <span>Tambah Pondok</span>
+      </button>
+    </header>
+
+    <div class="ftsp-pondok__summary">
+      <article class="ftsp-pondok__summary-card">
+        <div class="ftsp-pondok__summary-icon">
+          <span class="material-symbols-rounded">
+            domain
+          </span>
+        </div>
+
+        <p
+          class="ftsp-pondok__summary-value"
+          data-ftsp-summary-total
+        >
+          0
+        </p>
+
+        <p class="ftsp-pondok__summary-label">
+          Total Pondok
+        </p>
+      </article>
+
+      <article class="ftsp-pondok__summary-card">
+        <div class="ftsp-pondok__summary-icon">
+          <span class="material-symbols-rounded">
+            verified
+          </span>
+        </div>
+
+        <p
+          class="ftsp-pondok__summary-value"
+          data-ftsp-summary-active
+        >
+          0
+        </p>
+
+        <p class="ftsp-pondok__summary-label">
+          Pondok Aktif
+        </p>
+      </article>
+
+      <article class="ftsp-pondok__summary-card">
+        <div class="ftsp-pondok__summary-icon">
+          <span class="material-symbols-rounded">
+            map
+          </span>
+        </div>
+
+        <p
+          class="ftsp-pondok__summary-value"
+          data-ftsp-summary-region
+        >
+          0
+        </p>
+
+        <p class="ftsp-pondok__summary-label">
+          Wilayah
+        </p>
+      </article>
+
+      <article class="ftsp-pondok__summary-card">
+        <div class="ftsp-pondok__summary-icon">
+          <span class="material-symbols-rounded">
+            location_city
+          </span>
+        </div>
+
+        <p
+          class="ftsp-pondok__summary-value"
+          data-ftsp-summary-city
+        >
+          0
+        </p>
+
+        <p class="ftsp-pondok__summary-label">
+          Kabupaten/Kota
+        </p>
+      </article>
+    </div>
+
+    <div class="ftsp-pondok__toolbar">
+      <div class="ftsp-pondok__search">
+        <span
+          class="
+            material-symbols-rounded
+            ftsp-pondok__search-icon
+          "
+        >
+          search
+        </span>
+
+        <input
+          class="ftsp-pondok__control"
+          type="search"
+          placeholder="Cari nama, lokasi, atau jenjang..."
+          autocomplete="off"
+          data-ftsp-pondok-search
+        >
+      </div>
+
+      <select
+        class="ftsp-pondok__control"
+        data-ftsp-filter-province
+      >
+        <option value="">Semua provinsi</option>
+      </select>
+
+      <select
+        class="ftsp-pondok__control"
+        data-ftsp-filter-level
+      >
+        <option value="">Semua jenjang</option>
+      </select>
+
+      <select
+        class="ftsp-pondok__control"
+        data-ftsp-filter-status
+      >
+        <option value="">Semua status</option>
+        <option value="ACTIVE">Aktif</option>
+        <option value="INACTIVE">
+          Tidak Aktif
+        </option>
+      </select>
+
+      <button
+        class="
+          ftsp-pondok__button
+          ftsp-pondok__button--neutral
+        "
+        type="button"
+        data-ftsp-pondok-refresh
+        title="Muat ulang"
+      >
+        <span class="material-symbols-rounded">
+          refresh
+        </span>
+      </button>
+    </div>
+
+    <section class="ftsp-pondok__content">
+      <header class="ftsp-pondok__content-header">
+        <h2 class="ftsp-pondok__content-title">
+          Daftar Pondok
+        </h2>
+
+        <span
+          class="ftsp-pondok__result-count"
+          data-ftsp-pondok-count
+        >
+          0 data
+        </span>
+      </header>
+
+      <div
+        class="ftsp-pondok__loading"
+        data-ftsp-pondok-loading
+      >
+        <div>
+          <div class="ftsp-pondok__spinner"></div>
+          <div>Memuat data pondok...</div>
+        </div>
+      </div>
+
+      <div
+        class="ftsp-pondok__empty"
+        data-ftsp-pondok-empty
+        hidden
+      >
+        <div>
+          <div class="ftsp-pondok__empty-icon">
+            <span class="material-symbols-rounded">
+              domain_disabled
+            </span>
+          </div>
+
+          <h3 class="ftsp-pondok__empty-title">
+            Belum ada data pondok
+          </h3>
+
+          <p class="ftsp-pondok__empty-text">
+            Tambahkan pondok pertama untuk mulai
+            mencatat data survei pendidikan.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="ftsp-pondok__table-wrap"
+        data-ftsp-pondok-table-wrap
+        hidden
+      >
+        <table class="ftsp-pondok__table">
+          <thead>
+            <tr>
+              <th>Pondok</th>
+              <th>Lokasi</th>
+              <th>Jenjang</th>
+              <th>Status</th>
+              <th>Diperbarui</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody data-ftsp-pondok-body></tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+</template>
+
+<div
+  class="ftsp-pondok-drawer"
+  data-ftsp-pondok-drawer
+  hidden
+>
+  <button
+    class="ftsp-pondok-drawer__backdrop"
+    type="button"
+    aria-label="Tutup form"
+    data-ftsp-pondok-close
+  ></button>
+
+  <section class="ftsp-pondok-drawer__panel">
+    <header class="ftsp-pondok-drawer__header">
+      <div>
+        <h2
+          class="ftsp-pondok-drawer__title"
+          data-ftsp-pondok-form-title
+        >
+          Tambah Pondok
+        </h2>
+
+        <p class="ftsp-pondok-drawer__subtitle">
+          Isi identitas pondok secara lengkap.
+        </p>
+      </div>
+
+      <button
+        class="ftsp-pondok-drawer__close"
+        type="button"
+        data-ftsp-pondok-close
+        aria-label="Tutup"
+      >
+        <span class="material-symbols-rounded">
+          close
+        </span>
+      </button>
+    </header>
+
+    <div class="ftsp-pondok-drawer__body">
+      <form
+        class="ftsp-pondok-form"
+        data-ftsp-pondok-form
+        novalidate
+      >
+        <input
+          type="hidden"
+          name="pondokId"
+        >
+
+        <div
+          class="
+            ftsp-pondok-form__field
+            ftsp-pondok-form__field--full
+          "
+        >
+          <label class="ftsp-pondok-form__label">
+            Nama pondok
+            <span class="ftsp-pondok-form__required">
+              *
+            </span>
+          </label>
+
+          <input
+            class="ftsp-pondok__control"
+            name="namaPondok"
+            type="text"
+            maxlength="180"
+            placeholder="Contoh: Pondok Pesantren Riyadhussholihiin"
+          >
+
+          <span
+            class="ftsp-pondok-form__error"
+            data-error-for="nama_pondok"
+          ></span>
+        </div>
+
+        <div class="ftsp-pondok-form__field">
+          <label class="ftsp-pondok-form__label">
+            Nama singkat
+          </label>
+
+          <input
+            class="ftsp-pondok__control"
+            name="namaSingkat"
+            type="text"
+            maxlength="80"
+            placeholder="Contoh: Riyadh"
+          >
+        </div>
+
+        <div class="ftsp-pondok-form__field">
+          <label class="ftsp-pondok-form__label">
+            Wilayah
+          </label>
+
+          <input
+            class="ftsp-pondok__control"
+            name="wilayah"
+            type="text"
+            maxlength="100"
+            placeholder="Contoh: Pandeglang"
+          >
+        </div>
+
+        <div class="ftsp-pondok-form__field">
+          <label class="ftsp-pondok-form__label">
+            Provinsi
+            <span class="ftsp-pondok-form__required">
+              *
+            </span>
+          </label>
+
+          <input
+            class="ftsp-pondok__control"
+            name="provinsi"
+            type="text"
+            maxlength="100"
+            placeholder="Contoh: Banten"
+          >
+
+          <span
+            class="ftsp-pondok-form__error"
+            data-error-for="provinsi"
+          ></span>
+        </div>
+
+        <div class="ftsp-pondok-form__field">
+          <label class="ftsp-pondok-form__label">
+            Kabupaten/Kota
+            <span class="ftsp-pondok-form__required">
+              *
+            </span>
+          </label>
+
+          <input
+            class="ftsp-pondok__control"
+            name="kabupatenKota"
+            type="text"
+            maxlength="120"
+            placeholder="Contoh: Kabupaten Pandeglang"
+          >
+
+          <span
+            class="ftsp-pondok-form__error"
+            data-error-for="kabupaten_kota"
+          ></span>
+        </div>
+
+        <div
+          class="
+            ftsp-pondok-form__field
+            ftsp-pondok-form__field--full
+          "
+        >
+          <label class="ftsp-pondok-form__label">
+            Alamat
+          </label>
+
+          <textarea
+            class="ftsp-pondok__control"
+            name="alamat"
+            maxlength="500"
+            placeholder="Alamat lengkap pondok"
+          ></textarea>
+        </div>
+
+        <div
+          class="
+            ftsp-pondok-form__field
+            ftsp-pondok-form__field--full
+          "
+        >
+          <label class="ftsp-pondok-form__label">
+            Jenjang
+            <span class="ftsp-pondok-form__required">
+              *
+            </span>
+          </label>
+
+          <div
+            class="ftsp-pondok-form__jenjang"
+            data-ftsp-pondok-levels
+          ></div>
+
+          <span
+            class="ftsp-pondok-form__error"
+            data-error-for="jenjang"
+          ></span>
+        </div>
+
+        <div
+          class="
+            ftsp-pondok-form__field
+            ftsp-pondok-form__field--full
+          "
+        >
+          <label class="ftsp-pondok-form__label">
+            Google Maps URL
+          </label>
+
+          <input
+            class="ftsp-pondok__control"
+            name="mapsUrl"
+            type="url"
+            maxlength="500"
+            placeholder="https://maps.app.goo.gl/..."
+          >
+
+          <span
+            class="ftsp-pondok-form__error"
+            data-error-for="maps_url"
+          ></span>
+
+          <span class="ftsp-pondok-form__help">
+            Tempel tautan lokasi dari Google Maps.
+          </span>
+        </div>
+
+        <div class="ftsp-pondok-form__field">
+          <label class="ftsp-pondok-form__label">
+            Latitude
+          </label>
+
+          <input
+            class="ftsp-pondok__control"
+            name="latitude"
+            type="text"
+            inputmode="decimal"
+            placeholder="-6.308..."
+          >
+
+          <span
+            class="ftsp-pondok-form__error"
+            data-error-for="latitude"
+          ></span>
+        </div>
+
+        <div class="ftsp-pondok-form__field">
+          <label class="ftsp-pondok-form__label">
+            Longitude
+          </label>
+
+          <input
+            class="ftsp-pondok__control"
+            name="longitude"
+            type="text"
+            inputmode="decimal"
+            placeholder="106.103..."
+          >
+
+          <span
+            class="ftsp-pondok-form__error"
+            data-error-for="longitude"
+          ></span>
+        </div>
+
+        <div class="ftsp-pondok-form__field">
+          <label class="ftsp-pondok-form__label">
+            Status
+          </label>
+
+          <select
+            class="ftsp-pondok__control"
+            name="status"
+          >
+            <option value="ACTIVE">Aktif</option>
+            <option value="INACTIVE">
+              Tidak Aktif
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <footer class="ftsp-pondok-drawer__footer">
+      <button
+        class="
+          ftsp-pondok__button
+          ftsp-pondok__button--neutral
+        "
+        type="button"
+        data-ftsp-pondok-close
+      >
+        Batal
+      </button>
+
+      <button
+        class="
+          ftsp-pondok__button
+          ftsp-pondok__button--primary
+        "
+        type="button"
+        data-ftsp-pondok-save
+      >
+        <span
+          class="
+            material-symbols-rounded
+            ftsp-pondok__button-icon
+          "
+        >
+          save
+        </span>
+
+        <span class="ftsp-pondok__button-loader"></span>
+
+        <span data-ftsp-save-label>
+          Simpan Pondok
+        </span>
+      </button>
+    </footer>
+  </section>
+</div>
+
+
+<template id="FTSPSurveyTemplate">
+  <section class="ftsp-survey" data-ftsp-survey-root>
+    <header class="ftsp-survey__hero">
+      <div class="ftsp-survey__hero-copy">
+        <p class="ftsp-survey__eyebrow">
+          Survey Workspace
+        </p>
+
+        <h1 class="ftsp-survey__title">
+          Survey Biaya Pondok
+        </h1>
+
+        <p class="ftsp-survey__subtitle">
+          Kelola biaya PSB, SPP bulanan, daftar ulang,
+          sumber informasi, dan status verifikasi dalam
+          satu workspace yang terstruktur.
+        </p>
+      </div>
+
+      <div class="ftsp-survey__hero-actions">
+        <button
+          class="ftsp-survey__button ftsp-survey__button--neutral"
+          type="button"
+          data-ftsp-survey-export
+        >
+          <span class="material-symbols-rounded ftsp-survey__button-icon">
+            picture_as_pdf
+          </span>
+
+          <span class="ftsp-survey__button-loader"></span>
+
+          <span data-ftsp-survey-export-label>
+            Export PDF
+          </span>
+        </button>
+
+        <button
+          class="ftsp-survey__button ftsp-survey__button--primary"
+          type="button"
+          data-ftsp-survey-add
+        >
+          <span class="material-symbols-rounded">
+            add
+          </span>
+
+          <span>
+            Survey Baru
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <div class="ftsp-survey__summary">
+      <article class="ftsp-survey__summary-card">
+        <span class="ftsp-survey__summary-label">Total Survey</span>
+        <strong class="ftsp-survey__summary-value" data-ftsp-survey-total>0</strong>
+      </article>
+
+      <article class="ftsp-survey__summary-card">
+        <span class="ftsp-survey__summary-label">Terverifikasi</span>
+        <strong class="ftsp-survey__summary-value" data-ftsp-survey-verified>0</strong>
+      </article>
+
+      <article class="ftsp-survey__summary-card">
+        <span class="ftsp-survey__summary-label">Rata-rata PSB</span>
+        <strong class="ftsp-survey__summary-value" data-ftsp-survey-average-psb>Rp0</strong>
+      </article>
+
+      <article class="ftsp-survey__summary-card">
+        <span class="ftsp-survey__summary-label">Rata-rata SPP</span>
+        <strong class="ftsp-survey__summary-value" data-ftsp-survey-average-spp>Rp0</strong>
+      </article>
+    </div>
+
+    <div class="ftsp-survey__toolbar">
+      <div class="ftsp-survey__search">
+        <span class="material-symbols-rounded">search</span>
+        <input
+          class="ftsp-survey__control"
+          type="search"
+          placeholder="Cari pondok, informan, sumber data..."
+          data-ftsp-survey-search
+        >
+      </div>
+
+      <select class="ftsp-survey__control" data-ftsp-survey-filter-pondok>
+        <option value="">Semua pondok</option>
+      </select>
+
+      <select class="ftsp-survey__control" data-ftsp-survey-filter-year>
+        <option value="">Semua tahun ajaran</option>
+      </select>
+
+      <select class="ftsp-survey__control" data-ftsp-survey-filter-status>
+        <option value="">Semua status</option>
+        <option value="DRAFT">Draft</option>
+        <option value="REVIEW">Perlu Review</option>
+        <option value="VERIFIED">Terverifikasi</option>
+        <option value="REJECTED">Ditolak</option>
+      </select>
+
+      <button
+        class="ftsp-survey__button ftsp-survey__button--neutral"
+        type="button"
+        title="Muat ulang"
+        data-ftsp-survey-refresh
+      >
+        <span class="material-symbols-rounded">refresh</span>
+      </button>
+    </div>
+
+    <section class="ftsp-survey__content">
+      <header class="ftsp-survey__content-header">
+        <h2 class="ftsp-survey__content-title">Daftar Survey</h2>
+        <span class="ftsp-survey__count" data-ftsp-survey-count>0 data</span>
+      </header>
+
+      <div class="ftsp-survey__loading" data-ftsp-survey-loading>
+        <div>
+          <div class="ftsp-survey__spinner"></div>
+          <div>Memuat data survey...</div>
+        </div>
+      </div>
+
+      <div class="ftsp-survey__empty" data-ftsp-survey-empty hidden>
+        <div>
+          <span class="material-symbols-rounded" style="font-size:48px;color:#94a3b8">assignment</span>
+          <h3>Belum ada data survey</h3>
+          <p>Tambahkan survey pertama untuk mulai membangun analisis biaya pondok.</p>
+        </div>
+      </div>
+
+      <div class="ftsp-survey__table-wrap" data-ftsp-survey-table-wrap hidden>
+        <table class="ftsp-survey__table">
+          <thead>
+            <tr>
+              <th>Pondok</th>
+              <th>Tahun Ajaran</th>
+              <th>Biaya PSB</th>
+              <th>SPP/Bulan</th>
+              <th>Daftar Ulang</th>
+              <th>Status</th>
+              <th>Tanggal Data</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody data-ftsp-survey-body></tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+</template>
+
+<div class="ftsp-survey-drawer" data-ftsp-survey-drawer hidden>
+  <button
+    class="ftsp-survey-drawer__backdrop"
+    type="button"
+    aria-label="Tutup form"
+    data-ftsp-survey-close
+  ></button>
+
+  <section class="ftsp-survey-drawer__panel">
+    <header class="ftsp-survey-drawer__header">
+      <div>
+        <h2 class="ftsp-survey-drawer__title" data-ftsp-survey-form-title>
+          Survey Baru
+        </h2>
+        <p class="ftsp-survey-drawer__subtitle">
+          Isi data berdasarkan informasi yang dapat dipertanggungjawabkan.
+        </p>
+      </div>
+
+      <button
+        class="ftsp-survey-drawer__close"
+        type="button"
+        data-ftsp-survey-close
+      >
+        <span class="material-symbols-rounded">close</span>
+      </button>
+    </header>
+
+    <div class="ftsp-survey-drawer__body">
+      <form class="ftsp-survey-form" data-ftsp-survey-form novalidate>
+        <input type="hidden" name="surveyId">
+
+        <div class="ftsp-survey-form__field ftsp-survey-form__field--full">
+          <label class="ftsp-survey-form__label">
+            Pondok <span class="ftsp-survey-form__required">*</span>
+          </label>
+          <select class="ftsp-survey__control" name="pondokId">
+            <option value="">Pilih pondok</option>
+          </select>
+          <span class="ftsp-survey-form__error" data-survey-error-for="pondok_id"></span>
+        </div>
+
+        <div class="ftsp-survey-form__field">
+          <label class="ftsp-survey-form__label">
+            Tahun ajaran <span class="ftsp-survey-form__required">*</span>
+          </label>
+          <input
+            class="ftsp-survey__control"
+            name="tahunAjaran"
+            type="text"
+            list="ftspSurveyAcademicYears"
+            placeholder="2026/2027"
+          >
+          <datalist id="ftspSurveyAcademicYears"></datalist>
+          <span class="ftsp-survey-form__error" data-survey-error-for="tahun_ajaran"></span>
+        </div>
+
+        <div class="ftsp-survey-form__field">
+          <label class="ftsp-survey-form__label">
+            Tanggal data <span class="ftsp-survey-form__required">*</span>
+          </label>
+          <input class="ftsp-survey__control" name="tanggalData" type="date">
+          <span class="ftsp-survey-form__error" data-survey-error-for="tanggal_data"></span>
+        </div>
+
+        <div class="ftsp-survey-form__field">
+          <label class="ftsp-survey-form__label">
+            Biaya PSB <span class="ftsp-survey-form__required">*</span>
+          </label>
+          <div class="ftsp-survey-form__money">
+            <span>Rp</span>
+            <input class="ftsp-survey__control" name="biayaPsb" type="text" inputmode="numeric" value="0">
+          </div>
+          <span class="ftsp-survey-form__error" data-survey-error-for="biaya_psb"></span>
+        </div>
+
+        <div class="ftsp-survey-form__field">
+          <label class="ftsp-survey-form__label">
+            SPP bulanan <span class="ftsp-survey-form__required">*</span>
+          </label>
+          <div class="ftsp-survey-form__money">
+            <span>Rp</span>
+            <input class="ftsp-survey__control" name="sppBulanan" type="text" inputmode="numeric" value="0">
+          </div>
+          <span class="ftsp-survey-form__error" data-survey-error-for="spp_bulanan"></span>
+        </div>
+
+        <div class="ftsp-survey-form__field">
+          <label class="ftsp-survey-form__label">
+            Biaya daftar ulang <span class="ftsp-survey-form__required">*</span>
+          </label>
+          <div class="ftsp-survey-form__money">
+            <span>Rp</span>
+            <input class="ftsp-survey__control" name="biayaDaftarUlang" type="text" inputmode="numeric" value="0">
+          </div>
+          <span class="ftsp-survey-form__error" data-survey-error-for="biaya_daftar_ulang"></span>
+        </div>
+
+        <div class="ftsp-survey-form__field">
+          <label class="ftsp-survey-form__label">
+            Sumber data <span class="ftsp-survey-form__required">*</span>
+          </label>
+          <select class="ftsp-survey__control" name="sumberData">
+            <option value="">Pilih sumber data</option>
+          </select>
+          <span class="ftsp-survey-form__error" data-survey-error-for="sumber_data"></span>
+        </div>
+
+        <div class="ftsp-survey-form__field">
+          <label class="ftsp-survey-form__label">Nama informan</label>
+          <input class="ftsp-survey__control" name="namaInforman" type="text" maxlength="160">
+        </div>
+
+        <div class="ftsp-survey-form__field">
+          <label class="ftsp-survey-form__label">Status verifikasi</label>
+          <select class="ftsp-survey__control" name="statusVerifikasi">
+            <option value="DRAFT">Draft</option>
+            <option value="REVIEW">Perlu Review</option>
+            <option value="VERIFIED">Terverifikasi</option>
+            <option value="REJECTED">Ditolak</option>
+          </select>
+          <span class="ftsp-survey-form__error" data-survey-error-for="status_verifikasi"></span>
+        </div>
+
+        <div class="ftsp-survey-form__field ftsp-survey-form__field--full">
+          <label class="ftsp-survey-form__label">Catatan</label>
+          <textarea class="ftsp-survey__control" name="catatan" maxlength="1000"></textarea>
+        </div>
+      </form>
+    </div>
+
+    <footer class="ftsp-survey-drawer__footer">
+      <button
+        class="ftsp-survey__button ftsp-survey__button--neutral"
+        type="button"
+        data-ftsp-survey-close
+      >
+        Batal
+      </button>
+
+      <button
+        class="ftsp-survey__button ftsp-survey__button--primary"
+        type="button"
+        data-ftsp-survey-save
+      >
+        <span class="material-symbols-rounded ftsp-survey__button-icon">save</span>
+        <span class="ftsp-survey__button-loader"></span>
+        <span data-ftsp-survey-save-label>Simpan Survey</span>
+      </button>
+    </footer>
+  </section>
+</div>
+
+<div
+  class="ftsp-survey-export-modal"
+  data-ftsp-survey-export-modal
+  hidden
+>
+  <button
+    class="ftsp-survey-export-modal__backdrop"
+    type="button"
+    data-ftsp-survey-export-close
+  ></button>
+
+  <section class="ftsp-survey-export-modal__panel">
+    <header class="ftsp-survey-export-modal__header">
+      <div>
+        <h3>
+          Pengaturan Export PDF
+        </h3>
+
+        <p>
+          Tentukan data dan urutan sebelum dokumen dibuat.
+        </p>
+      </div>
+
+      <button
+        class="ftsp-survey-export-modal__close"
+        type="button"
+        data-ftsp-survey-export-close
+      >
+        <span class="material-symbols-rounded">
+          close
+        </span>
+      </button>
+    </header>
+
+    <div class="ftsp-survey-export-modal__body">
+      <label class="ftsp-survey-export-modal__check">
+        <input
+          type="checkbox"
+          data-ftsp-survey-export-latest-year
+          checked
+        >
+
+        <span>
+          <strong>
+            Hanya tahun ajaran terbaru
+          </strong>
+
+          <span>
+            Data tahun ajaran lama tidak dimasukkan ke PDF.
+          </span>
+        </span>
+      </label>
+
+      <div class="ftsp-survey-export-modal__option">
+        <label for="ftspSurveyExportSort">
+          Urutkan Data
+        </label>
+
+        <select
+          class="ftsp-survey__control"
+          id="ftspSurveyExportSort"
+          data-ftsp-survey-export-sort
+        >
+          <option value="PSB_DESC">
+            PSB terbesar
+          </option>
+
+          <option value="FIRST_YEAR_DESC">
+            Biaya tahun pertama terbesar
+          </option>
+
+          <option value="PSB_ASC">
+            PSB terkecil
+          </option>
+
+          <option value="UPDATED_DESC">
+            Data terbaru
+          </option>
+
+          <option value="NAME_ASC">
+            Nama pondok A-Z
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <footer class="ftsp-survey-export-modal__footer">
+      <button
+        class="ftsp-survey__button ftsp-survey__button--neutral"
+        type="button"
+        data-ftsp-survey-export-close
+      >
+        Batal
+      </button>
+
+      <button
+        class="ftsp-survey__button ftsp-survey__button--primary"
+        type="button"
+        data-ftsp-survey-export-confirm
+      >
+        <span class="material-symbols-rounded">
+          picture_as_pdf
+        </span>
+
+        Download PDF
+      </button>
+    </footer>
+  </section>
+</div>
+
+  <script src="./assets/js/config.js"></script>
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/pondok.js"></script>
+  <script src="./assets/js/survey.js"></script>
+  <script src="./assets/js/insight.js"></script>
+  <script src="./assets/js/settings.js"></script>
+</body>
+</html>
