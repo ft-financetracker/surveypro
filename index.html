@@ -13,6 +13,9 @@
     content="#0B132B"
   >
 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <meta
     name="description"
     content="FT-SURVEYPRO — Survey Once. Analyze Smarter."
@@ -39,12 +42,71 @@
   <link rel="stylesheet" href="./assets/css/survey.css">
   <link rel="stylesheet" href="./assets/css/insight.css">
   <link rel="stylesheet" href="./assets/css/settings.css">
+  <link rel="stylesheet" href="./assets/css/auth.css">
 </head>
 
 <body>
+  <section class="ftsp-auth" id="authScreen" aria-labelledby="authTitle">
+    <div class="ftsp-auth__shell">
+      <div class="ftsp-auth__panel">
+        <div class="ftsp-auth__character" aria-hidden="true">
+          <img src="./assets/images/auth-character.png" alt="">
+        </div>
+
+        <main class="ftsp-auth__content">
+          <div class="ftsp-auth__brand">
+            <img src="./icons/icon-192.png" alt="Logo FT-SURVEYPRO">
+            <div>
+              <span>FT</span>
+              <strong>SurveyPro</strong>
+              <small>Survey Once. Analyze Smarter.</small>
+            </div>
+          </div>
+
+          <div class="ftsp-auth__heading">
+            <p>SECURE WORKSPACE</p>
+            <h1 id="authTitle">Selamat datang kembali.</h1>
+            <span>Masuk untuk mengelola data survey dan insight pondok.</span>
+          </div>
+
+          <form class="ftsp-auth__form" id="authForm">
+            <label for="authUsername">Username</label>
+            <div class="ftsp-auth__control">
+              <span class="material-symbols-rounded" aria-hidden="true">person</span>
+              <input id="authUsername" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+            </div>
+
+            <label for="authPassword">Password</label>
+            <div class="ftsp-auth__control">
+              <span class="material-symbols-rounded" aria-hidden="true">lock</span>
+              <input id="authPassword" name="password" type="password" autocomplete="current-password" required>
+              <button type="button" id="authTogglePassword" aria-label="Tampilkan password">
+                <span class="material-symbols-rounded" aria-hidden="true">visibility</span>
+              </button>
+            </div>
+
+            <p class="ftsp-auth__error" id="authError" role="alert" hidden></p>
+
+            <button class="ftsp-auth__submit" id="authSubmit" type="submit">
+              <span id="authSubmitLabel">Masuk ke SurveyPro</span>
+              <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+            </button>
+          </form>
+
+          <p class="ftsp-auth__help">
+            Belum mempunyai akun? <strong>Hubungi Administrator.</strong>
+          </p>
+
+          <div class="ftsp-auth__version">FT-SURVEYPRO • v0.1.0-alpha</div>
+        </main>
+      </div>
+    </div>
+  </section>
+
   <div
     class="ftsp-loader"
     id="pageLoader"
+    hidden
     aria-live="polite"
     aria-label="Memuat aplikasi"
   >
@@ -198,6 +260,16 @@
         </div>
 
         <div class="ftsp-topbar__actions">
+          <button
+            class="ftsp-icon-btn"
+            id="logoutButton"
+            type="button"
+            aria-label="Keluar dari aplikasi"
+            title="Logout"
+          >
+            <span class="material-symbols-rounded" aria-hidden="true">logout</span>
+          </button>
+
           <button
             class="ftsp-icon-btn"
             id="refreshButton"
@@ -1677,6 +1749,7 @@
 
   <script src="./assets/js/config.js"></script>
   <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/auth.js"></script>
   <script src="./assets/js/app.js"></script>
   <script src="./assets/js/pondok.js"></script>
   <script src="./assets/js/survey.js"></script>

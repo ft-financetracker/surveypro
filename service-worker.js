@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ft-surveypro-v1';
+const CACHE_NAME = 'ft-surveypro-v3';
 
 const APP_SHELL = [
   './',
@@ -10,8 +10,10 @@ const APP_SHELL = [
   './assets/css/survey.css',
   './assets/css/insight.css',
   './assets/css/settings.css',
+  './assets/css/auth.css',
   './assets/js/config.js',
   './assets/js/api.js',
+  './assets/js/auth.js',
   './assets/js/app.js',
   './assets/js/pondok.js',
   './assets/js/survey.js',
@@ -19,7 +21,8 @@ const APP_SHELL = [
   './assets/js/settings.js',
   './icons/icon-180.png',
   './icons/icon-192.png',
-  './icons/icon-512.png'
+  './icons/icon-512.png',
+  './assets/images/auth-character.png'
 ];
 
 self.addEventListener('install', event => {

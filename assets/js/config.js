@@ -3,7 +3,8 @@ window.FTSP_CONFIG = Object.freeze({
   DISPLAY_NAME: 'SurveyPro',
   VERSION: '0.1.0-alpha',
   API_URL: 'https://script.google.com/macros/s/AKfycbwKZo4iy06AVuPv1khf4irPsiLpAVJfD1uzmJev0QemjW1cBhWB6J7Ymysv3neyayFR/exec',
-  API_TIMEOUT: 20000,
+  API_TIMEOUT: 45000,
   PDF_TIMEOUT: 90000,
-  TOKEN_STORAGE_KEY: 'ftsp_access_token'
+  SESSION_STORAGE_KEY: 'ftsp_session_token',
+  USER_STORAGE_KEY: 'ftsp_session_user'
 });

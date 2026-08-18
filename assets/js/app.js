@@ -42,9 +42,20 @@
       initFTSurveyPro
     );
 
-    function initFTSurveyPro() {
+    async function initFTSurveyPro() {
       mapDom();
       bindEvents();
+
+      try {
+        await window.FTSPAuth.requireLogin();
+      } catch (error) {
+        return;
+      }
+
+      if (dom.pageLoader) {
+        dom.pageLoader.hidden = false;
+      }
+
       loadApplication();
     }
 
@@ -557,6 +568,15 @@ function escapeHtml(
       );
 
       if (
+        route === 'pondok' &&
+        window.FTSPPondok &&
+        typeof window.FTSPPondok.mount ===
+          'function'
+      ) {
+        window.FTSPPondok.mount();
+      }
+
+      if (
         route === 'survey' &&
         window.FTSPSurvey &&
         typeof window.FTSPSurvey.mount ===
@@ -734,8 +754,8 @@ function escapeHtml(
         showToast(message, type);
       },
 
-      resetAccessToken: () => {
-        window.FTSPApi?.resetAccessToken();
+      logout: () => {
+        window.FTSPApi?.logout();
       }
     });
   })();

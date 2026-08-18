@@ -33,18 +33,30 @@
 
   window.addEventListener(
     'hashchange',
-    mountPondokPage
+    mountPondokIfActive
   );
 
   function initializePondokModule() {
     bindGlobalEvents();
-    mountPondokPage();
 
     window.FTSPPondok = {
       mount: mountPondokPage,
       refresh: loadPondokData,
       openForm: openCreateForm
     };
+
+    mountPondokIfActive();
+  }
+
+  function mountPondokIfActive() {
+    const route =
+      window.location.hash
+        .replace('#', '')
+        .trim();
+
+    if (route === 'pondok') {
+      mountPondokPage();
+    }
   }
 
   function mountPondokPage() {

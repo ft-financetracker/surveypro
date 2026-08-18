@@ -25,32 +25,13 @@
     ftspSaveSettings: ['settingsSave', args => args[0] || {}]
   });
 
-  function getAccessToken() {
-    let token = sessionStorage.getItem(config.TOKEN_STORAGE_KEY) || '';
-
-    if (!token) {
-      token = String(window.prompt('Masukkan Access Token FT-SURVEYPRO:') || '').trim();
-
-      if (token) {
-        sessionStorage.setItem(config.TOKEN_STORAGE_KEY, token);
-      }
-    }
-
-    if (!token) {
-      throw new Error('Access Token diperlukan untuk membuka aplikasi.');
-    }
-
-    return token;
-  }
-
   function request(action, payload = {}, options = {}) {
     return new Promise((resolve, reject) => {
-      let token;
+      const isPublic = action === 'health' || action === 'login';
+      const sessionToken = localStorage.getItem(config.SESSION_STORAGE_KEY) || '';
 
-      try {
-        token = getAccessToken();
-      } catch (error) {
-        reject(error);
+      if (!isPublic && !sessionToken) {
+        reject(new Error('AUTH_REQUIRED'));
         return;
       }
 
@@ -86,9 +67,10 @@
         if (
           response &&
           response.success === false &&
-          /token tidak valid|akses api ditolak/i.test(String(response.message || ''))
+          /sesi login|akun tidak aktif/i.test(String(response.message || ''))
         ) {
-          sessionStorage.removeItem(config.TOKEN_STORAGE_KEY);
+          clearSession();
+          window.dispatchEvent(new CustomEvent('ftsp:auth-required'));
         }
 
         finish(resolve, response);
@@ -104,7 +86,7 @@
 
       const query = new URLSearchParams({
         action,
-        accessToken: token,
+        sessionToken,
         callback,
         payload: JSON.stringify(payload || {}),
         _: String(Date.now())
@@ -116,9 +98,38 @@
     });
   }
 
-  function resetAccessToken() {
-    sessionStorage.removeItem(config.TOKEN_STORAGE_KEY);
+  function clearSession() {
+    localStorage.removeItem(config.SESSION_STORAGE_KEY);
+    localStorage.removeItem(config.USER_STORAGE_KEY);
+  }
+
+  function saveSession(response) {
+    localStorage.setItem(config.SESSION_STORAGE_KEY, response.sessionToken);
+    localStorage.setItem(config.USER_STORAGE_KEY, JSON.stringify(response.user || {}));
+  }
+
+  function login(username, password) {
+    return request('login', { username, password })
+      .then(response => {
+        if (response && response.success === true && response.sessionToken) {
+          saveSession(response);
+        }
+
+        return response;
+      });
+  }
+
+  function logout() {
+    clearSession();
     window.location.reload();
+  }
+
+  function getCurrentUser() {
+    try {
+      return JSON.parse(localStorage.getItem(config.USER_STORAGE_KEY) || 'null');
+    } catch (error) {
+      return null;
+    }
   }
 
   function createRunner() {
@@ -176,8 +187,12 @@
 
   window.FTSPApi = Object.freeze({
     request,
-    resetAccessToken,
-    hasAccessToken: () => Boolean(sessionStorage.getItem(config.TOKEN_STORAGE_KEY))
+    login,
+    logout,
+    clearSession,
+    getCurrentUser,
+    hasSession: () => Boolean(localStorage.getItem(config.SESSION_STORAGE_KEY)),
+    validateSession: () => request('session')
   });
 
   window.google = window.google || {};

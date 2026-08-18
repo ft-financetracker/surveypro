@@ -13,17 +13,26 @@
   };
 
   document.addEventListener('DOMContentLoaded', initSurveyModule);
-  window.addEventListener('hashchange', mountSurveyPage);
+  window.addEventListener('hashchange', mountSurveyIfActive);
 
   function initSurveyModule() {
     bindGlobalEvents();
-    mountSurveyPage();
 
     window.FTSPSurvey = {
       mount: mountSurveyPage,
       refresh: loadSurveyData,
       openForm: openCreateForm
     };
+
+    mountSurveyIfActive();
+  }
+
+  function mountSurveyIfActive() {
+    const route = window.location.hash.replace('#', '').trim();
+
+    if (route === 'survey') {
+      mountSurveyPage();
+    }
   }
 
   function mountSurveyPage() {
