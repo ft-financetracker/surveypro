@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ft-surveypro-v3';
+const CACHE_NAME = 'ft-surveypro-v4';
 
 const APP_SHELL = [
   './',
@@ -64,6 +64,22 @@ self.addEventListener('fetch', event => {
         })
         .catch(() => caches.match('./index.html'))
         .catch(() => caches.match('./offline.html'))
+    );
+    return;
+  }
+
+  if (
+    url.origin === self.location.origin &&
+    ['script', 'style'].includes(event.request.destination)
+  ) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
     );
     return;
   }

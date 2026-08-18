@@ -209,7 +209,7 @@
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker
-        .register('./service-worker.js')
+        .register('./service-worker.js?v=4')
         .catch(error => console.warn('Service worker gagal didaftarkan:', error));
     });
   }
